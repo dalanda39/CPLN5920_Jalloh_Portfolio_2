@@ -15,8 +15,12 @@ Advanced spatial analysis and data science for urban planning and public policy.
 - **Final Project:** Capstone modeling challenge
 
 ## About Me
-[Students will customize this section]
+Dalanda Jalloh 
+UPenn MCP Candidate 
+dalandaj@upenn.edu 
+dalanda39
+I am taking this course to better learn how to serve the public sector !
 
 ## Contact
-- Email: [your.email@upenn.edu]
-- GitHub: [@your-username]
+- Email: [dalandaj@upenn.edu]
+- GitHub: [@dalanda39]
