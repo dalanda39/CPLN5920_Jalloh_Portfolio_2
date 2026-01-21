@@ -46,6 +46,7 @@ Explore the structure of your data and answer these questions:
 
 ```{r explore-structure}
 # Use glimpse() to see the data structure
+glimpse(car_data)
 
 
 # Check the column names
@@ -57,14 +58,15 @@ head(car_data)
 
 **Questions to answer:**
 - How many rows and columns does the dataset have?
-- What types of variables do you see (numeric, character, etc.)?
+- What types of variables do you see (numeric, character, etc.
 - Are there any column names that might cause problems? Why?
 
+
 **Your answers:**
-- Rows: [YOUR ANSWER]
-- Columns: [YOUR ANSWER]  
-- Variable types: [YOUR ANSWER]
-- Problematic names: [YOUR ANSWER]
+- Rows: 50,000
+- Columns: 7
+- Variable types: character, dbL
+- Problematic names: Mileage 
 
 ## 1.2 Tibble vs Data Frame
 
