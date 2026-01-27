@@ -13,7 +13,6 @@ execute:
   warning: false
   message: false
 ---
-
 # Overview
 
 Welcome to your first lab! In this (not graded) assignment, you'll practice the fundamental dplyr operations I overviewed in class using car sales data. This lab will help you get comfortable with:
@@ -35,7 +34,7 @@ library(tidyverse)
 
 # Read in the car sales data
 # Make sure the data file is in your lab_0/data/ folder
-car_data <- read_csv("C:/Users/dalan/Desktop/CPLN5920/GitHub/CPLN5920_Jalloh_Portfolio_2/Labs/Lab0_1_20/Data/car_sales_data.csv")
+car_data <- read_csv("data/raw/car_sales_data.csv")
 ```
 
 # Exercise 1: Getting to Know Your Data
@@ -50,7 +49,13 @@ glimpse(car_data)
 
 
 # Check the column names
-
+#manufacturer 
+#Model 
+#Engine Size
+#Fuel Type
+#Year of manufacturer 
+#Mileage 
+#Price 
 
 # Look at the first few rows
 head(car_data)
@@ -66,7 +71,7 @@ head(car_data)
 - Rows: 50,000
 - Columns: 7
 - Variable types: character, dbL
-- Problematic names: Mileage 
+- Problematic names: Engine size, fuel type and year of manufacturer because the name has multiple names in one
 
 ## 1.2 Tibble vs Data Frame
 
@@ -83,7 +88,7 @@ car_df
 
 **Question:** What differences do you notice in how they print?
 
-**Your answer:** [YOUR ANSWER]
+**Your answer:** There is no difference
 
 # Exercise 2: Basic Column Operations
 
@@ -93,12 +98,20 @@ Practice selecting different combinations of columns:
 
 ```{r column-selection}
 # Select just Model and Mileage columns
+car_data$Model
+car_data_1<- car_data %>%
+  select(Model, Mileage)
 
 
 # Select Manufacturer, Price, and Fuel type
+car_data_2<- car_data %>% 
+  select(Manufacturer, Price, `Fuel type`)
+
 
 
 # Challenge: Select all columns EXCEPT Engine Size
+car_data_3<- car_data %>% 
+  select(-`Engine size`)
 
 ```
 
@@ -108,6 +121,8 @@ Let's fix a problematic column name:
 
 ```{r rename-columns}
 # Rename 'Year of manufacture' to year
+car_data <- car_data %>%
+  rename(year = `Year of manufacture`)
 
 
 # Check that it worked
@@ -116,7 +131,7 @@ names(car_data)
 
 **Question:** Why did we need backticks around `Year of manufacture` but not around `year`?
 
-**Your answer:** [YOUR ANSWER]
+**Your answer:** because year is one word 
 
 # Exercise 3: Creating New Columns
 
@@ -124,13 +139,18 @@ names(car_data)
 
 ```{r calculate-age}
 # Create an 'age' column (2025 minus year of manufacture)
+car_data<- car_data %>% 
+  mutate(age= 2025-year)
 
 
 # Create a mileage_per_year column  
-
+car_data<- car_data %>% 
+  mutate(mileage_per_year= Mileage/ age )
 
 # Look at your new columns
 #select(car_data, Model, year, age, Mileage, mileage_per_year)
+car_data_columns<- car_data %>% 
+  select(Model, year, age, Mileage, mileage_per_year)
 ```
 
 ## 3.2 Categorize Cars
@@ -138,8 +158,17 @@ names(car_data)
 ```{r categorize-cars}
 # Create a price_category column where if price is < 15000, its is coded as budget, between 15000 and 30000 is midrange and greater than 30000 is mid-range (use case_when)
 
+car_data <- car_data %>% 
+  mutate( price_category = case_when(
+      Price < 15000 ~ "budget",
+      Price >= 15000 & Price <= 30000 ~ "midrange",
+      Price > 30000 ~ "highend"
+    )
+  )
+
 
 # Check your categories select the new column and show it
+names(car_data)
 ```
 
 # Exercise 4: Filtering Practice
@@ -148,12 +177,19 @@ names(car_data)
 
 ```{r basic-filtering}
 # Find all Toyota cars
-
-
+car_data_toyota<- car_data %>%
+  filter(Manufacturer=="Toyota")
+  
 # Find cars with mileage less than 30,000
-
+car_data_lessmileage<- car_data %>% 
+  filter(Mileage< 30000)
 
 # Find luxury cars (from price category) with low mileage
+car_data_luxury <- car_data_lessmileage %>% 
+  filter(price_category == "high-end")
+#there aren't any
+
+
 
 ```
 
@@ -161,18 +197,28 @@ names(car_data)
 
 ```{r multiple-conditions}
 # Find cars that are EITHER Honda OR Nissan
+car_data_honda_nissan <- car_data %>% 
+  filter(Manufacturer %in% c("Honda", "Nissan"))
+
+car_data_honda_nissan_test<- car_data %>% 
+  filter(Manufacturer== "Honda" | Manufacturer=="Nissan")
 
 
 # Find cars with price between $20,000 and $35,000
-
+car_data_pricebetween<- car_data %>% 
+  filter(Price >= 20000 & Price <= 35000)
 
 # Find diesel cars less than 10 years old
+car_data_diesel <- car_data %>% 
+  filter(`Fuel type` == "Diesel", age < 10) %>% 
+  summarise(n())
+
 
 ```
 
 **Question:** How many diesel cars are less than 10 years old?
 
-**Your answer:** [YOUR ANSWER]
+**Your answer:** 2040
 
 # Exercise 5: Grouping and Summarizing
 
@@ -188,8 +234,16 @@ avg_price_by_brand
 
 # Calculate average mileage by fuel type
 
+avg_mileage_by_fuel<- car_data %>% 
+  group_by(`Fuel type`) %>% 
+  summarize(avg_mileage= mean(Mileage))
+
 
 # Count cars by manufacturer
+
+countcars<- car_data %>% 
+  group_by(Manufacturer) %>% 
+  summarise(n())
 
 ```
 
@@ -197,6 +251,14 @@ avg_price_by_brand
 
 ```{r categorical-summaries}
 # Frequency table for price categories
+
+car_data %>%
+  count(price_category)
+
+car_data %>% 
+  group_by(price_category) %>% 
+  tally()
+
 
 ```
 
