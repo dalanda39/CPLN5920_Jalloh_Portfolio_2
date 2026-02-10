@@ -8,18 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-<<<<<<< HEAD
       - text: Labs
         menu:
           - href: labs/lab_0/
             text: "Lab 0: dplyr Basics" 
-
-=======
-        text: Labs
-        menu:
-        - href: labs/lab_0/
-          text: "Lab 0: dplyr Basics"
->>>>>>> 6f66688b7db68a6789902b2ecce30699db38dd03
 
 format:
   html:

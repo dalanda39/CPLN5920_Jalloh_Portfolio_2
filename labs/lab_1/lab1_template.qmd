@@ -378,14 +378,6 @@ summarise(n_tracts= n())
 
 ```{r pattern-analysis}
 # Group tracts by whether they have high MOE issues
-#this was wrong 
-pattern<- selected_counties_census %>% 
-group_by(MOE_flag_black) %>% 
-summarise(n_tracts= n()) %>% 
-ungroup() %>% 
-group_by(MOE_flag_white) %>% 
-summarise (w_tracts= n())
-
 
 pattern_all <- selected_counties_census %>%
   pivot_longer(
@@ -478,7 +470,7 @@ kable(recommendations,
 
 **Your Task:** Use your analysis results to provide specific guidance to the department.
 
-1. **Counties suitable for immediate algorithmic implementation:** [List counties with high confidence data and explain why they're appropriate]
+1. **Counties suitable for immediate algorithmic implementation:** Counties suitible for immediate algorithmic implementation 
 
 2. **Counties requiring additional oversight:** [List counties with moderate confidence data and describe what kind of monitoring would be needed]
 
