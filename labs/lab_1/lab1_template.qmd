@@ -62,6 +62,7 @@ library(dplyr)
 Sys.getenv("CENSUS_API_KEY")
 
 
+
 # Choose your state for analysis - assign it to a variable called my_state
 my_state<- "New York"
 ```
@@ -139,13 +140,13 @@ mutate(reliability = case_when(
     )
   )
 # Create a summary showing count of counties in each reliability category
-NY_census_cleaned_reliability_summary<- NY_census_cleaned_reliability %>% 
+NY_census_summary<- NY_census_cleaned_reliability %>% 
 group_by(reliability) %>% 
 count() %>% 
 ungroup() %>% 
 mutate(percent= n/sum(n)*100) 
 #here I needed to ungroup because I wanted to do a calculation across the entire dataset 
-# Hint: use count() and mutate() to add percentages
+# Hint: ,use count() and mutate() to add percentages
 ```
 
 ## 2.3 High Uncertainty Counties
@@ -308,12 +309,12 @@ avg_white= weighted.mean(per_white, totalpopE, na.rm=TRUE)
 # Show: number of tracts, average percentage for each racial/ethnic group
 
 avg_dem_county_1<- selected_counties_census %>% 
-group_by(
-county=case_when(
+  group_by(
+            county=case_when(
 str_detect(NAME, "Erie")~ "Erie", 
 str_detect(NAME, "Kings")~ "Kings", 
 str_detect(NAME, "Hamilton")~ "Hamilton")) %>% 
-summarise(
+  summarise(
 n_tracts=n(),
 avg_black= weighted.mean(per_black, totalpopE, na.rm=TRUE),
 avg_his= weighted.mean(per_his, totalpopE, na.rm=TRUE),
@@ -423,7 +424,8 @@ kable(pattern_all,
 
 **Pattern Analysis:** [Describe any patterns you observe. Do certain types of communities have less reliable data? What might explain this?]
 
-It seems as if my white population across the different 
+- make histogram to see 
+-
 
 
 # Part 5: Policy Recommendations
