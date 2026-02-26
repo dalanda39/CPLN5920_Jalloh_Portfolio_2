@@ -60,19 +60,21 @@ library(patchwork)
 library(here)
 library(dplyr)
 
-# Load spatial data
-pa_counties <- st_read("data/Pennsylvania_County_Boundaries.shp", quiet=TRUE)
-hospitals <- st_read("data/hospitals.geojson", quiet=TRUE)
-census_tracts <- tracts(state = "PA", cb = TRUE) 
+```
 
+
+```{r load-data}
+#| echo: false
+#| message: false
+#| warning: false
+
+pa_counties <- st_read("data/Pennsylvania_County_Boundaries.shp", quiet = TRUE)
+hospitals   <- st_read("data/hospitals.geojson", quiet = TRUE)
+census_tracts <- tracts(state = "PA", cb = TRUE)
 
 # Check that all data loaded correctly
-
 unique_hospitals <- hospitals %>%
   distinct(FACILITY_N)
-
-st_crs(hospitals)
-st_crs(census_tracts)
 
 ```
 
@@ -963,6 +965,7 @@ schools_exp<- schools_proj %>%
 filter(school_nam %in% c("CONWELL", "RUSSELL MIDDLE SCHOOL", "YOUTHBUILD PHILADELPHIA CHARTER", "PEIRCE, THOMAS M. SCHOOL", "KENDERTON ELEMENTARY", "WILLARD, FRANCES E. SCHOOL", 	
 "DUCKREY, TANNER SCHOOL", "PHILADELPHIA MILITARY ACADEMY", "JOHN B STETSON MIDDLE SCHOOL", "DEBURGOS, J. ELEMENTARY", 	
 "ELKIN, LEWIS SCHOOL"))
+
 ```
 
 **Analysis requirements:**
