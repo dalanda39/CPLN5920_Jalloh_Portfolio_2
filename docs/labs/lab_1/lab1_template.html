@@ -136,8 +136,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
-    <a class="dropdown-item" href="../../labs/lab_0/">
+    <a class="dropdown-item" href="../../labs/lab_0/lab0_template.html">
  <span class="dropdown-text">Lab 0: dplyr Basics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_1/lab1_template.html">
+ <span class="dropdown-text">Lab 1: Census Data Exploration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_2/lab2_template.html">
+ <span class="dropdown-text">Lab 2: Spatial Analysis and Visualization</span></a>
   </li>  
     </ul>
   </li>
@@ -360,13 +368,13 @@ mutate(reliability = case_when(
     )
   )
 # Create a summary showing count of counties in each reliability category
-NY_census_cleaned_reliability_summary&lt;- NY_census_cleaned_reliability %&gt;% 
+NY_census_summary&lt;- NY_census_cleaned_reliability %&gt;% 
 group_by(reliability) %&gt;% 
 count() %&gt;% 
 ungroup() %&gt;% 
 mutate(percent= n/sum(n)*100) 
 #here I needed to ungroup because I wanted to do a calculation across the entire dataset 
-# Hint: use count() and mutate() to add percentages</code></pre>
+# Hint: ,use count() and mutate() to add percentages</code></pre>
 <p>:::</p>
 <section id="high-uncertainty-counties" class="level2">
 <h2 class="anchored" data-anchor-id="high-uncertainty-counties">2.3 High Uncertainty Counties</h2>
@@ -583,12 +591,12 @@ mutate(percent= n/sum(n)*100)
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Show: number of tracts, average percentage for each racial/ethnic group</span></span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>avg_dem_county_1<span class="ot">&lt;-</span> selected_counties_census <span class="sc">%&gt;%</span> </span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="at">county=</span><span class="fu">case_when</span>(</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">county=</span><span class="fu">case_when</span>(</span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(NAME, <span class="st">"Erie"</span>)<span class="sc">~</span> <span class="st">"Erie"</span>, </span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(NAME, <span class="st">"Kings"</span>)<span class="sc">~</span> <span class="st">"Kings"</span>, </span>
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(NAME, <span class="st">"Hamilton"</span>)<span class="sc">~</span> <span class="st">"Hamilton"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="at">n_tracts=</span><span class="fu">n</span>(),</span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="at">avg_black=</span> <span class="fu">weighted.mean</span>(per_black, totalpopE, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="at">avg_his=</span> <span class="fu">weighted.mean</span>(per_his, totalpopE, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
@@ -800,7 +808,8 @@ mutate(percent= n/sum(n)*100)
 
 **Pattern Analysis:** [Describe any patterns you observe. Do certain types of communities have less reliable data? What might explain this?]
 
-It seems as if my white population across the different 
+- make histogram to see 
+-
 
 
 # Part 5: Policy Recommendations
