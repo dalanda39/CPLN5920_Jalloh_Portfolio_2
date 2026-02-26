@@ -60,21 +60,10 @@ library(patchwork)
 library(here)
 library(dplyr)
 
-# Load required packages
-library(sf)
-library(tidyverse)
-library(tigris)
-library(tidycensus)
-library(scales)
-library(patchwork)
-library(here)
-library(dplyr)
-
-
 # Load spatial data
-pa_counties <- st_read(here("data/Pennsylvania_County_Boundaries.shp"))
-hospitals <- st_read(here("data/hospitals.geojson"))
-census_tracts <- tracts(state = "PA", cb = TRUE)
+pa_counties <- st_read("data/Pennsylvania_County_Boundaries.shp", quiet=TRUE)
+hospitals <- st_read("data/hospitals.geojson", quiet=TRUE)
+census_tracts <- tracts(state = "PA", cb = TRUE) 
 
 
 # Check that all data loaded correctly
