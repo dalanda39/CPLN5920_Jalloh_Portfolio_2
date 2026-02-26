@@ -15,7 +15,7 @@ website:
           - href: labs/lab_1/lab1_template.qmd
             text: "Lab 1: Census Data Exploration"
           - href: labs/lab_2/lab2_template.qmd
-            text: "Lab 2: Spatial Analysis and Visualization"
+            text: "Lab 2: Spatial Visualization"
 format:
   html:
     theme: cosmo

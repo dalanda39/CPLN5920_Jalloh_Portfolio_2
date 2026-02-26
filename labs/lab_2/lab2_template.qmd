@@ -50,6 +50,7 @@ Load the required spatial data:
 #| echo: false
 #| message: false
 #| warning: false
+#| results: 'hide'
 
 library(sf)
 library(tidyverse)
@@ -67,6 +68,7 @@ library(dplyr)
 #| echo: false
 #| message: false
 #| warning: false
+#| results: 'hide'
 
 pa_counties <- st_read("data/Pennsylvania_County_Boundaries.shp", quiet = TRUE)
 hospitals   <- st_read("data/hospitals.geojson", quiet = TRUE)
@@ -100,6 +102,12 @@ Use `tidycensus` to download tract-level demographic data for Pennsylvania.
 
 **Your Task:**
 ```{r, message=FALSE}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
+
+
 # Get demographic data from ACS
 
 #loaded all variables 
@@ -177,7 +185,6 @@ Identify census tracts with vulnerable populations based on TWO criteria:
 # Filter for vulnerable tracts based on your criteria
 hist(dem_data_total$median_incomeE)
 quantile(dem_data_total$median_incomeE, na.rm = TRUE)
-
 hist(dem_data_total$pop_65up)
 quantile(dem_data_total$pop_65up)
 
@@ -227,6 +234,11 @@ For each vulnerable tract, calculate the distance to the nearest hospital.
 
 **Your Task:**
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
+
 
 #tracts with vulnerable
 
@@ -758,6 +770,12 @@ Choose ONE of the following challenge exercises, or propose your own research qu
    - Provide basic summary statistics
 
 ```{r} 
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
+
+
 # Load your additional dataset
 crime<- read.csv("data/crime_incidents.csv")
 
@@ -791,7 +809,7 @@ crime_sf <- st_as_sf(
 crime_proj<- st_transform(crime_sf, 2272)
 
 
-
+getwd()
 
 
 #some summary statistics 
