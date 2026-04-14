@@ -20,6 +20,7 @@ _site/
 .Renviron
 .Renviron.*
 
+labs/lab_4/data/raw/**.csv
 
 
 # =========================
