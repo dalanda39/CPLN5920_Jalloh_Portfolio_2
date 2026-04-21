@@ -19,7 +19,7 @@ website:
           - href: labs/lab_4/lab_4.qmd
             text: "Lab 4: Spatial Predicitve Analysis"
           - href: labs/lab_5/Part_3.qmd
-          - text: "Lab: Predicitng Indego Bike Stations"
+          - text: "Lab 5: Predicitng Indego Bike Stations"
        
 format:
   html:
